@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "teamGenerator",
+		"path": "."
+	},
+	{
+		"name": "Assets",
+		"path": "../bootcamp/10-OOP/02-Homework/Assets"
+	}
+],
+  "settings": {}
+}
