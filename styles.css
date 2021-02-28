@@ -1,0 +1,49 @@
+/* colors to use for hover shadows #f22f08, #8d2f23, #561e18 */
+header{
+    background-image: radial-gradient(circle 248px at center, #594346 0%, #212027 47%, #8d2f23 100%);
+    border-bottom: white 3px solid;
+}
+
+body{
+    
+    background-image: linear-gradient(120deg, #212027 35%, #594346 100%);
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 1000px;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+}
+
+.card{
+    width: 20rem;
+}
+
+.card-body{
+    background-image: linear-gradient(120deg, #8d2f23 35%, #561318 100%);
+}
+
+.borderB{
+    border-bottom: white 1.5px solid;
+    padding-bottom: 10px;
+}
+
+p{
+    font-size: 20px;
+}
+
+footer:hover, h1:hover {
+    color: #f22f08;
+}
+
+.card:hover{
+    box-shadow: #f22f08 0px 7px 29px 0px;
+}
