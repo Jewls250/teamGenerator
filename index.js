@@ -1,6 +1,7 @@
 // Connets to HTML
 const fs = require("fs");
-const InputPrompt = require("inquirer/lib/prompts/input");
+const inquirer = require('inquirer')
+const employeesArray = []
 
 // Employee class
 class Employee {
@@ -23,7 +24,7 @@ class Employee {
   }
 }
 
-class Manager extends Employee() {
+class Manager extends Employee {
   constructor(name, id, email, officeNumber) {
     super(name, id, email);
     this.officeNumber = officeNumber;
@@ -36,7 +37,7 @@ class Manager extends Employee() {
   }
 }
 
-class Engineer extends Employee() {
+class Engineer extends Employee {
    constructor(name, id, email, github) {
      super(name, id, email);
      this.github = github;
@@ -49,13 +50,13 @@ class Engineer extends Employee() {
    }
 }
 
-class Intern extends Employee() {
+class Intern extends Employee {
     constructor(name, id, email, school) {
       super(name, id, email);
       this.school = school;
     }
     getSchool() {
-      return this.officeNumber;
+      return this.school;
     }
     getRole() {
       return `Intern`;
@@ -87,34 +88,113 @@ let questions = [
     message: "What role are you applying for.",
   },
 ];
+function teamQuestions (){
+  inquirer.prompt(questions).then((answers) => {
+    console.log(JSON.stringify(answers, null, "  "));
+    if (answers.role === "engineer") {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "gitHub",
+            message: "What is your git hub",
+          },
+          {
+            type: "list",
+            name: "newPerson",
+            message: "Would you like to add another person?",
+            choices: ['yes', 'no']
+          },
+        ])
+        .then((response) => {
+          console.log(JSON.stringify(answers, null, "  "));
 
-inquirer.prompt(questions).then((answers) => {
-  console.log(JSON.stringify(answers, null, "  "));
-  if (answers.role === "engineer") {
-    inquirer.prompt().then((answers) => {
-      console.log(JSON.stringify(answers, null, "  "));
+          let engineer = new Engineer(
+            answers.fullName,
+            answers.id,
+            answers.email,
+            response.gitHub
+          );
+          employeesArray.push(engineer)
+          // need special questions
+          if (response.newPerson === "yes") {
+            teamQuestions();
+          } else {
+            createHtml();
+          }
+        });
+    } else if (answers.role === "manager") {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "officeNumber",
+            message: "What is your office number",
+          },
+          {
+            type: "list",
+            name: "newPerson",
+            message: "Would you like to add another person?",
+            choices: ['yes', 'no']
+          },
+        ])
+        .then((response) => {
+          console.log(JSON.stringify(answers, null, "  "));
 
-      let engineer = new Engineer(answers.name, answers.id, answers.email);
-      // need special questions
+          let manager = new Manager(
+            answers.fullName,
+            answers.id,
+            answers.email,
+            response.officeNumber
+          );
+          employeesArray.push(manager);
+          // need special questions
+          if (response.newPerson === "yes") {
+            teamQuestions();
+          } else {
+            createHtml();
+          }
+        });
+    } else if (answers.role === "intern") {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "school",
+            message: "What school did you go to?",
+          },
+          {
+            type: "list",
+            name: "newPerson",
+            message: "Would you like to add another person?",
+            choices: ['yes', 'no']
+          },
+        ])
+        .then((response) => {
+          console.log(JSON.stringify(answers, null, "  "));
 
-    });
-  } else if (answers.role === "manager") {
-    inquirer.prompt().then((answers) => {
-      console.log(JSON.stringify(answers, null, "  "));
+          let intern = new Intern(
+            answers.fullName,
+            answers.id,
+            answers.email,
+            response.school
+          );
+          employeesArray.push(intern);
+          // need special questions
+          if (response.newPerson === 'yes'){
+            teamQuestions()
+          } else {
+            createHtml()
+          }
+        });
+    }
+  });
+}
 
-      let manager = new Manager(answers.name, answers.id, answers.email);
-      // need special questions
+function createHtml(){
+  console.log(employeesArray)
+}
 
-    });
-  } else if (answers.role === "intern") {
-    inquirer.prompt().then((answers) => {
-      console.log(JSON.stringify(answers, null, "  "));
-
-      let intern = new Intern(answers.name, answers.id, answers.email);
-      // need special questions
-
-    });
-  }
-});
-
+teamQuestions()
 // Generate html file with user input
+
