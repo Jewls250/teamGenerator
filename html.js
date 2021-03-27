@@ -3,11 +3,10 @@ function generateEmployee(data) {
   <div class="card text-left">
   <img class="card-img-top" src="holder.js/100px180/" alt="">
   <div class="card-body">
-    <h4 class="card-title">${data.role}</h4>
     <h4 class="card-title">${data.fullName}</h4>
-    <p class="card-text">${data.introduction}</p>
-    <p class="card-text"></p>
-    <p class="card-text"></p>
+    <h4 class="card-title">${data.role}</h4>
+    <p class="card-text">${data.id}</p>
+    <p class="card-text">${data.email}</p>
   </div>
 </div>
   
