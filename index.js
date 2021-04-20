@@ -83,15 +83,21 @@ let questions = [
     message: "What is your email",
   },
   {
-    type: "input",
+    type: "list",
     name: "role",
     message: "What role are you applying for.",
+    choices: [
+      "Manager",
+      "Engineer",
+      "Intern"
+    ]
   },
 ];
+
 function teamQuestions (){
   inquirer.prompt(questions).then((answers) => {
     console.log(JSON.stringify(answers, null, "  "));
-    if (answers.role === "engineer") {
+    if (answers.role === "Engineer") {
       inquirer
         .prompt([
           {
@@ -123,7 +129,7 @@ function teamQuestions (){
             createHtml();
           }
         });
-    } else if (answers.role === "manager") {
+    } else if (answers.role === "Manager") {
       inquirer
         .prompt([
           {
@@ -155,7 +161,7 @@ function teamQuestions (){
             createHtml();
           }
         });
-    } else if (answers.role === "intern") {
+    } else if (answers.role === "Intern") {
       inquirer
         .prompt([
           {
@@ -192,8 +198,38 @@ function teamQuestions (){
 }
 
 function createHtml(){
-  console.log(employeesArray)
+  // console.log(employeesArray)
+  let htmlString ;
+  for(i = 0; i < employeesArray.length; i++){
+    if (employeesArray[i].github){
+      htmlString += `
+        <p> ${employeesArray[i].name} </p>
+        <p> ${employeesArray[i].id} </p>
+        <p> ${employeesArray[i].email} </p>
+        <p> ${employeesArray[i].github} </p>
+`;
+  }
+    else if (employeesArray[i].officeNumber){
+       htmlString += `
+        <p> ${employeesArray[i].name} </p>
+        <p> ${employeesArray[i].id} </p>
+        <p> ${employeesArray[i].email} </p>
+        <p> ${employeesArray[i].github} </p>
+`;
+    }  else if (employeesArray[i].officeNumber){
+       htmlString += `
+        <p> ${employeesArray[i].name} </p>
+        <p> ${employeesArray[i].id} </p>
+        <p> ${employeesArray[i].email} </p>
+        <p> ${employeesArray[i].github} </p>
+`;
+    }
+      fs.writeFile("index2.html", htmlString, (err) => {
+    if (err) throw err;
+    console.log("The file has been saved!");
+   })     
 }
+
 
 teamQuestions()
 // Generate html file with user input
