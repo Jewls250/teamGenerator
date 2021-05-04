@@ -7,7 +7,7 @@ header{
 body{
     
     background-image: linear-gradient(120deg, #212027 35%, #594346 100%);
-    color: white;
+    color: black;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,15 +16,20 @@ body{
 }
 
 footer{
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     color: white;
 }
 
-.card{
+#card{
     width: 20rem;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 35px auto; 
+    float: none; 
 }
 
 .card-body{
@@ -46,4 +51,8 @@ footer:hover, h1:hover {
 
 .card:hover{
     box-shadow: #f22f08 0px 7px 29px 0px;
+}
+
+#cardCentering{
+    justify-content: center;
 }
