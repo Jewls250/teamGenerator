@@ -225,32 +225,32 @@ function createHtml(){
     if (employeesArray[i].github){
       htmlString += `
       <div class="card" id="card">
-        <p> ${employeesArray[i].name} </p>
-        <p> ${employeesArray[i].id} </p>
-        <p> ${employeesArray[i].email} </p>
-        <p> ${employeesArray[i].github} </p>
+        <p>Full Name: ${employeesArray[i].name} </p>
+        <p>ID: ${employeesArray[i].id} </p>
+        <p>Email: ${employeesArray[i].email} </p>
+        <p>Github: ${employeesArray[i].github} </p>
       </div>
       
 `;
   }
     else if (employeesArray[i].officeNumber){
        htmlString += `
-       <div class="card" id="card">
-        <p> ${employeesArray[i].name} </p>
-        <p> ${employeesArray[i].id} </p>
-        <p> ${employeesArray[i].email} </p>
-        <p> ${employeesArray[i].officeNumber} </p>
-        </div>
+      <div class="card" id="card">
+        <p>Full Name ${employeesArray[i].name} </p>
+        <p>ID: ${employeesArray[i].id} </p>
+        <p>Email: ${employeesArray[i].email} </p>
+        <p>Office Number: ${employeesArray[i].officeNumber} </p>
+      </div>
       
 `;
     }  else if (employeesArray[i].school){
        htmlString += `
-       <div class="card" id="card>
-        <p> ${employeesArray[i].name} </p>
-        <p> ${employeesArray[i].id} </p>
-        <p> ${employeesArray[i].email} </p>
-        <p> ${employeesArray[i].school} </p>
-        </div>
+      <div class="card" id="card">
+        <p>Full name: ${employeesArray[i].name} </p>
+        <p>ID: ${employeesArray[i].id} </p>
+        <p>Email: ${employeesArray[i].email} </p>
+        <p>University ${employeesArray[i].school} </p>
+      </div>
 
 `;
   }
